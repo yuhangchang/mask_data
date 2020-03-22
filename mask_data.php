@@ -1,5 +1,4 @@
 <?php
-require_once("config.php");
 require_once("vendor/autoload.php");
 use JamesGordo\CSV\Parser;
 use League\CLImate\CLImate;
@@ -7,6 +6,9 @@ use League\CLImate\CLImate;
 function downloadFile()
 {
     $maskDataUrl = "http://data.nhi.gov.tw/Datasets/Download.ashx?rid=A21030000I-D50001-001&l=https://data.nhi.gov.tw/resource/mask/maskdata.csv";
+    if (time() - filemtime("maskdata.csv") > 300) {
+        unlink("maskdata.csv");
+    }
     if (is_file("maskdata.csv") === false) {
         if (file_put_contents("maskdata.csv", file_get_contents($maskDataUrl))) {
             return true;
