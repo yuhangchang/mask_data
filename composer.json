@@ -1,5 +1,6 @@
 {
     "require": {
-        "league/climate": "^3.5"
+        "league/climate": "^3.5",
+        "jamesgordo/php-csv-parser": "^1.0"
     }
 }
